@@ -53,7 +53,7 @@ export default function ItemId({item}) {
 }
 
 export async function getStaticPaths() {
-  const response = await fetch('http://localhost:3000/api/products/get-products')
+  const response = await fetch(`${process.env.BASE_URL}/products/get-products`)
   const items = await response.json()
 
 
@@ -69,7 +69,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   let name = context.params.itemName
 
-  let response = await fetch(`http://localhost:3000/api/products/${name}`)
+  let response = await fetch(`${process.env.BASE_URL}/products/${name}`)
  
   let item = await response.json()
 

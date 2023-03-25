@@ -52,7 +52,7 @@ export async function getStaticPaths() {
   }
 
 export async function getStaticProps(context) {
-    const response = await fetch('http://localhost:3000/api/products/get-products')
+    const response = await fetch(`${process.env.BASE_URL}/products/get-products`)
     let products = await response.json();
 
     products = products.filter((item) => context.params.product === item.product_type)
