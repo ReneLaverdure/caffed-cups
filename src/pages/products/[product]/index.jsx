@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ProductCard from '../../../components/ProductCard/ProductCard'
-
+import Product from '../../../models/products'
 
 export default function product({products}) {
     // const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export default function product({products}) {
     //     console.log(dispatch(addProductLine(products)))
     // }
    
-
+    console.log(products)
     return (
         <>  
             <div className='ProductContainer'>
@@ -52,10 +52,10 @@ export async function getStaticPaths() {
   }
 
 export async function getStaticProps(context) {
-    const response = await fetch(`${process.env.BASE_URL}/products/get-products`)
-    let products = await response.json();
 
-    products = products.filter((item) => context.params.product === item.product_type)
+    let products = await Product.find({product_type: context.params.product})
+    products = JSON.stringify(products)
+    products = JSON.parse(products)
 
     return {
         props: { 
