@@ -49,7 +49,7 @@ export default function Login() {
                 </div>
 
                 <div>
-                    <p>Don't have a account register <Link href='/register'>Here</Link></p>
+                    <p>Don&apos;t have a account register <Link href='/register'>Here</Link></p>
                 </div>
          
                 <button type='submit'>Login</button>
