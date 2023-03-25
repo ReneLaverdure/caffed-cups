@@ -2,6 +2,8 @@ import React from 'react'
 
 import ProductCard from '../../../components/ProductCard/ProductCard'
 
+import "../../../db/mongoose"
+import Product from '../../../models/products'
 
 export default function product({products}) {
     // const dispatch = useDispatch();
@@ -15,7 +17,9 @@ export default function product({products}) {
 
     //     console.log(dispatch(addProductLine(products)))
     // }
-   
+     if (typeof products === "undefined"){
+    return "Loading..."
+    } 
 
     return (
         <>  
@@ -52,10 +56,11 @@ export async function getStaticPaths() {
   }
 
 export async function getStaticProps(context) {
-    const response = await fetch(`${process.env.BASE_URL}/products/get-products`)
-    let products = await response.json();
+    let products = await Product.find({product_type: context.params.product})
+    products = JSON.stringify(products)
+    products = JSON.parse(products)
 
-    products = products.filter((item) => context.params.product === item.product_type)
+    // products = products.filter((item) => context.params.product === item.product_type)
 
     return {
         props: { 

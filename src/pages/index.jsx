@@ -23,8 +23,8 @@ export default function Home() {
       </main>
 
       <section className='SectionContainer'>
-        <ImageLink link="/products/coffee" image={coffee} name='coffee' />
-        <ImageLink link="/products/tea" image={Tea} name='Tea' />
+        <ImageLink link="/products/coffee" image={coffee} name='coffee' alt="coffee cup around a table" />
+        <ImageLink link="/products/tea" image={Tea} name='Tea' alt="display of tea cups"/>
       </section>
 
       <section>
