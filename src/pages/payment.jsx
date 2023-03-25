@@ -9,7 +9,7 @@ import {
 import CheckoutForm from '../components/CheckoutForm/CheckoutForm';
 
 
-export default function () {
+export default function Payment () {
   const stripePromise = loadStripe('pk_test_49hbjKbnxhMovke8b7QNR8MA00mPmUjTnu');
 
   return (
