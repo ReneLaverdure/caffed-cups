@@ -6,7 +6,7 @@ import Button from '../../../../components/Button/Button'
 
 import styles from '../../../../../styles/ProductItem.module.css'
 
-export default function itemid({item}) {
+export default function ItemId({item}) {
   const {name, image, price} = item[0]
 
   const itemCount = useSelector(getCartItems)
