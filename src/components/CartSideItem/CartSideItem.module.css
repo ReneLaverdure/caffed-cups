@@ -1,0 +1,30 @@
+.CartSideItem{
+    display: flex;
+
+    background-color: var(--secondary-colour);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+}
+
+.CartSideItemContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 1rem;
+}
+
+.CartSideItemControl{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.CartSideItemControl button{
+    padding: .5rem .8rem;
+    border-radius: 5px;
+    background-color: var(--brown);
+    color: white;
+}
+

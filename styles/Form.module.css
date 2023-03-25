@@ -1,0 +1,65 @@
+
+
+.FormContainer{
+    display: flex;
+    justify-content: center;
+    margin: 8rem auto;
+    color: white;
+    border-radius: 10px;
+    width: 60%;
+    height: 70vh;
+    background-color: var(--brown);
+    overflow: hidden;
+}
+
+.FormInputContainer{
+    flex: 1 1 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 8rem;
+}
+
+.FormImageContainer{
+    flex: 2 1 0%;
+}
+
+.FormImage{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.FormInput{
+    margin-top: 1rem;
+}
+
+.FormInput label{
+    display: block;
+    margin-bottom: .1rem;
+}
+
+.FormInput input {
+    width: 100%;
+    border-radius: 5px;
+    padding: .5rem .8rem;
+    background-color: white;
+}
+
+.FormLinkContainer{
+    margin: 0 auto;
+    margin-top: .5rem;
+}
+
+.FormLink{
+    text-decoration: underline;
+}
+
+.FormButton{
+    background-color: var(--secondary-colour);
+    border-radius: 5px;
+    padding: .5rem .8rem;
+    margin-top: 1rem;
+    color: var(--brown);
+    cursor: pointer;
+}

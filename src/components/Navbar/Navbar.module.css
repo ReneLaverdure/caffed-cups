@@ -1,0 +1,27 @@
+.Nav{
+    width: 100%;
+    margin: 1rem auto;
+    color: var(--primary-colour);
+}
+
+.NavHeading{
+    font-size: var(--font-heading);
+}
+
+.NavContainer{
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.NavLinksContainer{
+    margin-left: auto;
+}
+
+.NavLinks{
+    display: inline-block;
+    margin: 0 1rem;
+    font-size: 1.6rem;
+}

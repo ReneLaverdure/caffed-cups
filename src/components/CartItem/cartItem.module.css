@@ -1,0 +1,28 @@
+.CartItem{
+    background-color: var(--secondary-colour);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+    margin: 2rem auto;
+    border-radius: 15px;
+    padding: 1rem 5rem;
+    color: var(--primary-colour);
+}
+
+.CartItemControl{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 5%;
+}
+
+.CartItemControl button{
+    background-color: var(--primary-colour);
+    outline: none;
+    border: none;
+    padding: .2rem .6rem;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.5rem;
+}

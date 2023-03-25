@@ -1,0 +1,17 @@
+.ProductItemContainer{
+    width: 60%;
+    margin: 8rem auto;
+    display: flex;
+}
+
+.ProductItemContent{
+    margin-left: 5rem;
+}
+
+.ProductItemContent p{
+    margin-top: 2rem;
+}
+
+.ProductImage{
+    filter: drop-shadow(-10px 15px 5px rgba(31, 30, 30, 0.63));
+}
