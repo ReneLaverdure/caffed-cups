@@ -56,20 +56,21 @@ export async function getStaticPaths() {
   const response = await fetch(`${process.env.BASE_URL}/products/get-products`)
   const items = await response.json()
 
-
+  console.log(items)
   const paths = items.map((item) => ({
-    params: { product: item.product_type, itemName: item.name },
+    params: { product: item.product_type, id: item._id },
   }))
 
+  console.log(paths)
   return { paths, fallback: 'blocking' }
 }
 
 
 
 export async function getStaticProps(context) {
-  let name = context.params.itemName
-
-  let response = await fetch(`${process.env.BASE_URL}/products/${name}`)
+  let id = context.params.id
+  console.log('this is item id: ', id)
+  let response = await fetch(`${process.env.BASE_URL}/products/${id}`)
  
   let item = await response.json()
 
