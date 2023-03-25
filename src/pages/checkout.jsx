@@ -4,7 +4,7 @@ import {getCartItems} from '../store/features/cart'
 import Link from "next/link"
 import CartItem from "../components/CartItem/CartItem"
 
-export default function checkout() {
+export default function Checkout() {
     const items = useSelector(getCartItems)
 
     return (

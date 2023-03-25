@@ -6,7 +6,7 @@ import TeaBush from '../../public/tea-bush.jpg'
 import styles from '../../styles/Form.module.css';
 import Link from 'next/link';
 
-export default function register() {
+export default function Register() {
 
     const formik = useFormik({
         initialValues: {

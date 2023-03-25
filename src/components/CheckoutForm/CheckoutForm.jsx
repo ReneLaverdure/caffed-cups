@@ -20,6 +20,7 @@ export default function CheckoutForm() {
     const [clientSecret, setClientSecret] = useState("")
 
     useEffect(() => {
+
         fetch('http://localhost:3000/api/checkout/payment', {
             method: 'POST',
             headers: {
@@ -31,6 +32,7 @@ export default function CheckoutForm() {
             .then((data) => {
                 setClientSecret(data.paymentIntent.client_secret)
             })
+            
     }, [])
 
   
