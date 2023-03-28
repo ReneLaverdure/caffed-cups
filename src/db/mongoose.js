@@ -11,7 +11,7 @@ const connection = {};
 			useNewUrlParser: true,
             useUnifiedTopology: true,
 		});
-		mongoose.set('strictQuery', true);
+		// mongoose.set('strictQuery', false);
 		connection.isConnected = db.connections[0].readyState;
 
 		console.log("MongoDB Connected");

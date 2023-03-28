@@ -1,18 +1,16 @@
 import React from 'react'
 import Image from 'next/image'
-import { useSelector, useDispatch } from "react-redux"
-import { addCartItem, removeCartItem, getCartItems, updateCartTotal, toggleCart} from '../../../../store/features/cart'
+import { useDispatch } from "react-redux"
+import { addCartItem, updateCartTotal, toggleCart} from '../../../../store/features/cart'
 import Button from '../../../../components/Button/Button'
 
-import "../../../../db/mongoose"
+
 import Product from '../../../../models/products'
 import styles from '../../../../../styles/ProductItem.module.css'
 
 export default function ItemId({item}) {
 
   const {name, image, price} = item
-
-
   const dispatch = useDispatch()
 
   const addItemHandler = () => {
@@ -59,7 +57,6 @@ export async function getStaticPaths() {
   const paths = products.map((item) => ({
     params: { product: item.product_type, id: item._id },
   }))
-
 
   return { paths, fallback: false }
 }
