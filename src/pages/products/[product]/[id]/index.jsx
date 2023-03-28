@@ -1,31 +1,22 @@
 import React from 'react'
 import Image from 'next/image'
-import { useSelector, useDispatch } from "react-redux"
-import { addCartItem, removeCartItem, getCartItems, updateCartTotal, toggleCart} from '../../../../store/features/cart'
+import { useDispatch } from "react-redux"
+import { addCartItem, updateCartTotal, toggleCart} from '../../../../store/features/cart'
 import Button from '../../../../components/Button/Button'
 
-import "../../../../db/mongoose"
+
 import Product from '../../../../models/products'
 import styles from '../../../../../styles/ProductItem.module.css'
 
 export default function ItemId({item}) {
 
-
-
   const {name, image, price} = item
-
-  const itemCount = useSelector(getCartItems)
   const dispatch = useDispatch()
 
   const addItemHandler = () => {
     dispatch(addCartItem(item))
     dispatch(updateCartTotal())
     dispatch(toggleCart())
-  }
-
-  const removeItemHandler = () => {
-    dispatch(removeCartItem(item))
-    dispatch(updateCartTotal())
   }
 
   if (typeof item === "undefined"){
@@ -51,10 +42,6 @@ export default function ItemId({item}) {
         <Button className={styles.ProductItemButton} onClick={addItemHandler} >
           Add to Cart
         </Button>
-       
-        {/* <Button className={styles.ProductItemButton}  onClick={removeItemHandler} >
-          -
-        </Button> */}
       </div>
 
     </div>
@@ -67,15 +54,10 @@ export async function getStaticPaths() {
   products = JSON.stringify(products)
   products = JSON.parse(products)
 
-  // console.log('this is the responseseseasfsdgdfgh')
-
-
-
   const paths = products.map((item) => ({
     params: { product: item.product_type, id: item._id },
   }))
 
-  console.log(paths)
   return { paths, fallback: false }
 }
 
@@ -86,11 +68,6 @@ export async function getStaticProps(context) {
     let item = await Product.findById(id)
     item = JSON.stringify(item)
     item = JSON.parse(item)
-
-//   console.log('this is item id: ', id)
-//   let response = await fetch(`${process.env.BASE_URL}/products/${id}`)
- 
-//   let item = await response.json()
 
   return {
     props: {
