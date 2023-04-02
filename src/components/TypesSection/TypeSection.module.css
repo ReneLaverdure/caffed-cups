@@ -1,0 +1,10 @@
+.Button{
+    margin: .2rem .5rem;
+    margin-left: 0;
+    padding: .6rem 1rem;
+    background-color: var(--primary-colour);
+    color: white;
+    border-radius: 10px;
+    text-transform: capitalize;
+    cursor: pointer;
+}
