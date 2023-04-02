@@ -8,7 +8,7 @@ const getUnique = (item, value) => {
     return [...new Set(item.map(item => item[value]))]
 }
 
-export default function product({products}) {
+export default function ProductPage({products}) {
     const router = useRouter()
     let currentPage = router.asPath
 
