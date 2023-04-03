@@ -1,0 +1,17 @@
+.CheckoutContainer{
+    height: 100vh;
+    width: 100%;
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.CheckoutWrapper{
+
+}
+
+.CheckoutWrapper h1{
+    text-align: center;
+}

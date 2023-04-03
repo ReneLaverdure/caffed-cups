@@ -31,9 +31,6 @@ export default function Navbar() {
           <Link className={styles.NavLinks} href="/contact">
             Contact us
           </Link>
-          <Link className={styles.NavLinks} href="/faq">
-            FAQ
-          </Link>
           <Link className={styles.NavLinks} href="/login">
             Login
           </Link>

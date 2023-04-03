@@ -27,7 +27,7 @@ export default function Login() {
         }),
         onSubmit: (values) => {
             
-            router.push({pathname: '/', query: 'success'})
+            router.push({pathname: '/', query: {success: true}})
         }
     })
 
@@ -39,12 +39,12 @@ export default function Login() {
                 <h2>Login</h2>
 
                 <div className={styles.FormInput}>
-                    <label htmlFor="">Email</label>
+                    <label className={`${formik.touched.email && formik.errors.email ? styles.FormError : ''}`} htmlFor="email">{formik.touched.email && formik.errors.email ? formik.errors.email : 'Email'}</label>
                     <input type="text" name='email' value={formik.values.email} onChange={formik.handleChange} placeholder='Enter your Email'/>
                 </div>
 
                 <div className={styles.FormInput}>
-                    <label htmlFor="">Password</label>
+                    <label className={`${formik.touched.password && formik.errors.password ? styles.FormError : ''}`} htmlFor="password">{formik.touched.password && formik.errors.password ? formik.errors.password : 'Password'}</label>
                     <input type="password" name='password' value={formik.values.password} onChange={formik.handleChange} placeholder='Enter your Password'/>
                 </div>
 

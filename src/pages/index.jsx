@@ -1,11 +1,45 @@
 import Head from 'next/head'
+import Router, { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import ImageLink from '../components/ImageLink/ImageLink'
+import Circle from '../components/Circle/Circle'
+import PopUp from '../components/PopUp/PopUp'
 
+import SpilledBeans from '../../public/spilled-beans.png'
+import TeaField from '../../public/tea-fields.jpg'
+import Jungle from '../../public/jungle.jpg'
 import coffee from '../../public/coffee.jpg'
 import Tea from '../../public/tea.jpg'
+
+import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
 
+
 export default function Home() {
+
+  const router = useRouter()
+
+  const [canShow, setCanShow] = useState(false)
+
+
+  useEffect(() => {
+    handleMessage()
+  }, [])
+
+  const handleMessage = () => {
+    // console.log(router.query.success.success)
+
+    if(router.query.success === 'true'){
+
+      console.log('hell')
+      setCanShow(true)
+      setTimeout(() => {
+        setCanShow(false)
+      }, 3000)
+    }
+  }
+
+  console.log(router.query)
 
   return (
     <>
@@ -15,11 +49,41 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
 
 
+      <main className={styles.Main}>
+      {
+        canShow ? <PopUp message="Success" /> : null
+      }
+ 
+        <div className={styles.MainWrapper}>
 
-        
+          <div className={styles.MainHeading}>
+            <h1>Caffed Cups</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis leo ac sapien sagittis tempor. Ut non tortor tempus, consectetur dui nec, tristique diam. </p>
+          </div>
+
+          <div>
+
+            <Image className={styles.DisplayImage} src={SpilledBeans} alt="spilled cup of coffee beans"  />
+          </div>
+          <Circle 
+                top="-200" 
+                right="-100"
+                height="1100px"
+                width="1100px"
+                colour="var(--brown)"
+                />
+              
+            <Circle 
+                top="110" 
+                right="300"
+                height="800px"
+                width="800px"
+                colour="var(--secondary-colour)"
+                />    
+        </div>  
+  
       </main>
 
       <section className='SectionContainer'>
@@ -27,10 +91,27 @@ export default function Home() {
         <ImageLink link="/products/tea" image={Tea} name='Tea' alt="display of tea cups"/>
       </section>
 
+      <section className={styles.Pannel}>
+        <div className={styles.PannelItem}>
+          <Image src={Jungle} alt="a jungle photo"/>
+        </div>
+        <div className={`${styles.PannelItem} ${styles.PannelText} ${styles.MainPannel}`}>
+          <h2>Coffee Caffed</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis perferendis natus magni assumenda temporibus aut, fugiat voluptas sunt non esse, quam fuga, enim nihil doloremque animi libero voluptate odio rem?</p>
+        </div>
+        <div className={`${styles.PannelItem} ${styles.PannelText} ${styles.SecondaryPannel}`}>
+          <h2>Eco Subsanable</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore ea, eaque quae obcaecati laudantium, placeat nulla dolores quia velit eum ducimus quod odit quibusdam iusto consequuntur mollitia? Aliquid, sunt deserunt.</p>
+        </div>
+        <div className={styles.PannelItem}>
+          <Image src={TeaField} alt="A field of flowing tea plants" />
+        </div>
+      </section>
+
       <section>
 
       </section>
+
     </>
   )
 }
-
