@@ -1,0 +1,22 @@
+.PopUpContainer{
+    position: fixed;
+    top: 100px;
+    width: 100%;
+    z-index: 100;
+    /* background-color: black; */
+
+}
+
+.PopUpWrapper{
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 5px;
+    padding: .4rem .8rem;
+    background-color: rgb(47, 143, 47);
+    color: white;
+}
+
+
+
+

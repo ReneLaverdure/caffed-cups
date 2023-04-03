@@ -6,11 +6,20 @@
 
 .ProductItemContent{
     margin-left: 5rem;
+    color: var(--brown);
+}
+
+.ProductItemContent h1{
+    text-transform: capitalize;
+    font-size: 3rem;
 }
 
 .ProductItemContent p{
     margin-top: 2rem;
+    line-height: 1.4rem;
 }
+
+
 
 .ProductImage{
     filter: drop-shadow(-10px 15px 5px rgba(31, 30, 30, 0.63));

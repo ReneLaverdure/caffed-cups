@@ -1,7 +1,13 @@
-import React from 'react'
+import {CircleContainer} from './Circle.style.jsx'
 
-export default function Circle() {
+export default function Circle({top, right, colour, width, height}) {
   return (
-    <div>Circle</div>
+    <CircleContainer  
+      top={top} 
+      right={right} 
+      colour={colour} 
+      width={width} 
+      height={height}    
+    />
   )
 }

@@ -1,5 +1,3 @@
-
-
 :root{
   --font-heading: 2.5rem;
   --font-subtitle: 1.5rem;
@@ -9,6 +7,11 @@
   --brown: #7e450b;
   --white: white;
 
+}
+
+@font-face{
+  font-family: 'Alkatra Regular';
+  src: url('../public/Alkatra-Regular.ttf')
 }
 
 * {
@@ -22,6 +25,7 @@ body {
   max-width: 100vw;
   /* overflow-x: hidden; */
   background-color: #FFEDDD;
+  font-family: 'Alkatra Regular', Courier, monospace;
 }
 
 button{
@@ -44,6 +48,10 @@ input{
   border: none;
 }
 
+p{
+  letter-spacing: .1rem;
+}
+
 .Container{
   width: 80%;
   margin: 0 auto;
@@ -58,6 +66,7 @@ input{
 .ProductContainer{
   display: flex;
   padding: 4rem 5rem;
+  margin-top: 5rem;
 }
 
 .ProductGrid{

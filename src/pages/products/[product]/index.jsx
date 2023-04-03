@@ -3,10 +3,7 @@ import ProductCard from '../../../components/ProductCard/ProductCard'
 import Product from '../../../models/products'
 import TypesSection from '../../../components/TypesSection/TypesSection'
 import { useRouter } from 'next/router'
-//get all unique values
-const getUnique = (item, value) => {
-    return [...new Set(item.map(item => item[value]))]
-}
+
 
 export default function ProductPage({products}) {
     const router = useRouter()
@@ -54,31 +51,26 @@ export default function ProductPage({products}) {
     //set unquies types 
     const checkedTypes = () => {
         let tempList = [...products]
-        let types = getUnique(tempList, "types")
         let typesObj = {}
-    
-
-        types.map((item) => {
-            for(const key in item){
+        
+        tempList.map((item) => {
+            for(const key in item.types){
                 if(typesObj[key] === undefined){
-                    typesObj[key] = [item[key]]
+                    typesObj[key] = [item.types[key]]
                 } else {
-                    typesObj[key].push(item[key])
+                    typesObj[key].push(item.types[key])
                 }
             }
         })
-
 
         for(const key in typesObj){
             typesObj[key] = [...new Set(typesObj[key])]
         }
 
         typesObj = Object.entries(typesObj).map(([key, value]) => ({key, value}))
-       
+
         setTypeItems([...typesObj])
     }
-
-
 
 
     useEffect(() => {
@@ -89,13 +81,13 @@ export default function ProductPage({products}) {
     }, [currentPage])
 
     useEffect(() => {
+        //stop from running on first render
         if(!didMount.current){
             didMount.current = true;
             return
         }
-        handleFilter()
 
-        console.log('run filter')
+        handleFilter()
     }, [activeTypes])
 
 

@@ -23,8 +23,10 @@ export const cartSlice = createSlice({
                     ? {...cartItem, quantity: cartItem.quantity + 1}
                     : cartItem
                 )
+                state.cartItemCount++
             } else {
                 state.cartItems = [...cart, {...action.payload, quantity: 1} ]
+                state.cartItemCount++
             }
 
             
@@ -32,18 +34,21 @@ export const cartSlice = createSlice({
         removeCartItem: (state, action) => {   
             const product = action.payload
             const cart = state.cartItems
+
             const existingCartItem = cart.find(
                 (cartItem) => cartItem._id === product._id
             )
 
             if(existingCartItem.quantity === 1){
-                state.cartItems = cart.filter((cartItem) => cartItem._id !== product._id) 
+                state.cartItems = cart.filter((cartItem) => cartItem._id !== product._id)
+                state.cartItemCount--
             } else {
                 state.cartItems = state.cartItems.map((cartItem) => 
                     cartItem._id === product._id
                         ? {...cartItem, quantity: cartItem.quantity - 1}
                         : cartItem
                 )
+                state.cartItemCount--
             }
         },
         updateCartTotal: (state, action) => {
@@ -62,6 +67,7 @@ export const cartSlice = createSlice({
 export const getCartStatus = (state) => state.cart.isCartOpen
 export const getCartItems = state => state.cart.cartItems
 export const getCartTotal = state => state.cart.cartTotal
+export const getCatItemCount = state => state.cart.cartItemCount
 
 export const {addCartItem, removeCartItem , updateCartTotal, clearCartItem, toggleCart} = cartSlice.actions
 export default cartSlice.reducer

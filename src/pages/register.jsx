@@ -1,12 +1,14 @@
 import Image from 'next/image'
 import { useFormik } from "formik"
 import * as Yup from 'yup'
-
+import Router, { useRouter } from 'next/router'
 import TeaBush from '../../public/tea-bush.jpg'
 import styles from '../../styles/Form.module.css';
 import Link from 'next/link';
 
 export default function Register() {
+
+    const router = useRouter()
 
     const formik = useFormik({
         initialValues: {
@@ -27,11 +29,14 @@ export default function Register() {
                 .required('Last name is required'),
             password: Yup.string()
                 .min(6, "password must be at least 6 characters long")
-                .required('password is required')
+                .required('password is required'),
+            confirmPassword: Yup.string()
+                .required()
+                .oneOf([Yup.ref('password'), null], 'Password must match')
         }),
         onSubmit: (values) => {
             
-            router.push({pathname: '/', query: 'success'})
+            router.push({pathname: '/', query: {success: true}})
         }
     })
 
@@ -39,30 +44,30 @@ export default function Register() {
 
   return (
     <div className={styles.FormWrapper}>
-    <form className={styles.FormContainer} action="">
+    <form onSubmit={formik.handleSubmit} className={styles.FormContainer} action="">
         <div className={styles.FormInputContainer}>
             <h2>Register</h2>
 
             <div className={styles.FormInput}>
-                <label htmlFor="">Email</label>
-                <input type="text" placeholder='Enter your Email'/>
+                <label className={`${formik.touched.email && formik.errors.email ? styles.FormError : ''}`} htmlFor="email">{formik.touched.email && formik.errors.email ? formik.errors.email : 'Email'}</label>
+                <input type="text" name='email' value={formik.values.email} onChange={formik.handleChange} placeholder='Enter your Email'/>
             </div>
             <div className={styles.FormInput}>
-                <label htmlFor="">First Name</label>
-                <input type="text" placeholder='Enter first name'/>
+                <label className={`${formik.touched.firstName && formik.errors.firstName ? styles.FormError : ''}`} htmlFor="firstName">{formik.touched.firstName && formik.errors.firstName ? formik.errors.firstName : 'First name'}</label>
+                <input type="text" name='firstName' value={formik.values.firstName} onChange={formik.handleChange} placeholder='Enter your first name'/>
             </div>
             <div className={styles.FormInput}>
-                <label htmlFor="">Last Name</label>
-                <input type="text" placeholder='Enter last name'/>
+                <label className={`${formik.touched.lastName && formik.errors.lastName ? styles.FormError : ''}`} htmlFor="lastName">{formik.touched.lastName && formik.errors.lastName ? formik.errors.lastName : 'Last Name'}</label>
+                <input type="text" name='lastName' value={formik.values.lastName} onChange={formik.handleChange} placeholder='Enter your last name'/>
             </div>
 
             <div className={styles.FormInput}>
-                <label htmlFor="">Password</label>
-                <input type="password" placeholder='Enter your Password'/>
+                <label className={`${formik.touched.password && formik.errors.password ? styles.FormError : ''}`} htmlFor="password">{formik.touched.password && formik.errors.password ? formik.errors.password : 'Password'}</label>
+                <input type="password" name='password' value={formik.values.password} onChange={formik.handleChange} placeholder='Enter your Password'/>
             </div>
             <div className={styles.FormInput}>
-                <label htmlFor="">Comfirm Password</label>
-                <input type="password" placeholder='Re-enter your Password'/>
+                <label className={`${formik.touched.confirmPassword && formik.errors.confirmPassword ? styles.FormError : ''}`} htmlFor="confirmPassword">{formik.touched.confirmPassword && formik.errors.confirmPassword ? formik.errors.confirmPassword : 'Confirm Password'}</label>
+                <input type="password"  name='confirmPassword' value={formik.values.confirmPassword} onChange={formik.handleChange} placeholder='Re-enter your Password'/>
             </div>
 
             <div className={styles.FormLinkContainer}>

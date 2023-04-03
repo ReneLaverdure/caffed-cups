@@ -28,8 +28,8 @@ export default function ItemId({item}) {
       
       <Image className={styles.ProductImage} src={image} alt={name} width={500} height={600} />
       <div className={styles.ProductItemContent}>
-        <h2>{name}</h2>
-        <h4>{price}</h4>
+        <h1>{name}</h1>
+        <h4>${price}.00</h4>
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat hic tenetur sit doloremque maxime accusantium? Impedit ad nihil, possimus, aliquam culpa numquam perspiciatis est voluptates nam deleniti
           amet? Corrupti libero iste beatae distinctio? Ab sint quae corporis tempore porro cumque quam, architecto vel! Praesentium inventore sint dignissimos, consequatur distinctio molestias.

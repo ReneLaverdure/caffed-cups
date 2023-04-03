@@ -1,8 +1,23 @@
 .CartIconContainer{
-    display: inline-block;
+    /* display: inline-block; */
+    position: relative;
+    transform: translateX(50);
 }
 
 .CartIcon{
-    display: inline-block;
+    /* display: inline-block; */
+    height: 3rem;
+    width: 3rem;
+    
+}
+
+.ItemCount{
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: .4rem .6rem;
+    font-size: .8rem;
+    position: absolute;
+    right:0;
 }
 
