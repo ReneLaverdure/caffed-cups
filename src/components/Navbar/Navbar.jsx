@@ -6,10 +6,13 @@ import CartIcon from '../CartIcon/CartIcon'
 
 import { getCartStatus } from '@/store/features/cart'
 import { useSelector } from 'react-redux'
+import {useSession, signOut} from 'next-auth/react'
+
 
 export default function Navbar() {
 
   const cartStatus = useSelector(getCartStatus)
+  const {data: session} = useSession()
 
   return (
     <nav className={styles.Nav}>
@@ -31,12 +34,19 @@ export default function Navbar() {
           <Link className={styles.NavLinks} href="/contact">
             Contact us
           </Link>
-          <Link className={styles.NavLinks} href="/login">
-            Login
-          </Link>
-          <Link className={styles.NavLinks} href="/register">
-            Register
-          </Link>
+          {
+            session ?
+            <Link onClick={signOut} className={styles.NavLinks} href="/">
+              Logout
+            </Link> :
+              <Link className={styles.NavLinks} href="/login">
+              Login
+            </Link>
+
+          }
+                      {/* <Link className={styles.NavLinks} href="/register">
+              Register
+            </Link> */}
           <div className={styles.NavLinks}>
             <CartIcon />
           </div>
