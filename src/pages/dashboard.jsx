@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import { useEffect } from 'react';
 
-export default function dashboard() {
+export default function Dashboard() {
     const session = useSession()
     const router = useRouter();
 
