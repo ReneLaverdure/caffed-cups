@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux"
 import { addCartItem, updateCartTotal, toggleCart} from '../../../../store/features/cart'
 import Button from '../../../../components/Button/Button'
 
-
+import {connectToMongoDB} from '../../../../db/mongoose'
 import Product from '../../../../models/products'
 import styles from '../../../../../styles/ProductItem.module.css'
 
@@ -49,7 +49,7 @@ export default function ItemId({item}) {
 }
 
 export async function getStaticPaths() {
-
+  await connectToMongoDB().catch(err => res.json(err))
   let products = await Product.find()
   products = JSON.stringify(products)
   products = JSON.parse(products)
@@ -64,6 +64,7 @@ export async function getStaticPaths() {
 
 
 export async function getStaticProps(context) {
+    await connectToMongoDB().catch(err => res.json(err))
     let id = context.params.id
     let item = await Product.findById(id)
     item = JSON.stringify(item)
