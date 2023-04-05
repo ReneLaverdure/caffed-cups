@@ -5,11 +5,16 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useFormik } from "formik"
 import * as Yup from 'yup'
+import { useState } from 'react';
+
+import { loginUser } from '../helpers';
 
 
 export default function Login() {
 
     const router = useRouter()
+    const [submitError, setSubmitError] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const formik = useFormik({
         initialValues: {
@@ -25,13 +30,35 @@ export default function Login() {
                 .min(6, "password must be at least 6 characters long")
                 .required('password is required')
         }),
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
             
-            router.push({pathname: '/', query: {success: true}})
+            try {
+                setLoading(true)
+
+                     const loginRes = await loginUser({
+                        email: values.email,
+                        password: values.password
+                    })
+
+
+                    if(loginRes && !loginRes.ok){
+
+                        setSubmitError(loginRes.error || "")
+                    } else {
+                        console.log('hello from success')
+                        router.push('/')
+                    }
+
+            } catch(error){
+
+                const errorMsg = error.error
+
+                setSubmitError(errorMsg)
+            }
+
         }
     })
 
-    console.log(formik.values)
   return (
     <div className={styles.FormWrapper}>
         <form onSubmit={formik.handleSubmit} className={styles.FormContainer} action="">

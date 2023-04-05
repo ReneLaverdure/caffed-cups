@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import { useFormik } from "formik"
 import * as Yup from 'yup'
-import Router, { useRouter } from 'next/router'
+import {useState} from 'react'
+import { loginUser } from '../helpers'
+import { useRouter } from 'next/router'
 import TeaBush from '../../public/tea-bush.jpg'
 import styles from '../../styles/Form.module.css';
 import Link from 'next/link';
@@ -9,6 +11,9 @@ import Link from 'next/link';
 export default function Register() {
 
     const router = useRouter()
+
+    const [submitError, setSubmitError] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const formik = useFormik({
         initialValues: {
@@ -34,19 +39,69 @@ export default function Register() {
                 .required()
                 .oneOf([Yup.ref('password'), null], 'Password must match')
         }),
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
             
-            router.push({pathname: '/', query: {success: true}})
+
+            try {
+                setLoading(true)
+
+                const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/signup`, {
+                    method: "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                      },
+                    body: JSON.stringify(values)
+                })
+
+                const data = await res.json()
+
+                if(data.user){
+                    
+                   const loginRes = await loginUser({
+                        email: data.user.email,
+                        password: values.password
+                    })
+
+
+                    if(loginRes && !loginRes.ok){
+
+                        setSubmitError(loginRes.error || "")
+                    } else {
+                        console.log('hello from success')
+                        router.push('/')
+                    }
+
+                } else {
+                    setSubmitError(log.error)
+                }
+              
+
+            } catch(error){
+                // console.log(error)
+                const errorMsg = error.error
+                // console.log(errorMsg)
+                setSubmitError(errorMsg)
+            }
+
+
+            
+            setLoading(false)
+            // router.push({pathname: '/', query: {success: true}})
         }
     })
 
-
+    // console.log(submitError)
 
   return (
     <div className={styles.FormWrapper}>
     <form onSubmit={formik.handleSubmit} className={styles.FormContainer} action="">
         <div className={styles.FormInputContainer}>
             <h2>Register</h2>
+            
+            {
+                submitError && <p style={{color: 'red'}}>{submitError}</p>
+            }
 
             <div className={styles.FormInput}>
                 <label className={`${formik.touched.email && formik.errors.email ? styles.FormError : ''}`} htmlFor="email">{formik.touched.email && formik.errors.email ? formik.errors.email : 'Email'}</label>
@@ -74,7 +129,7 @@ export default function Register() {
                 <p>Already have an account <Link className={styles.FormLink} href='/login'>Login Here</Link></p>
             </div>
      
-            <button className={styles.FormButton}>Register</button>
+            <button type='submit' className={styles.FormButton}>Register</button>
 
         </div>
         <div className={styles.FormImageContainer}>

@@ -3,7 +3,12 @@ import validator from 'validator'
 
 
 const userSchema = new Schema({
-    name: {
+    firstName: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    lastName: {
         type: String,
         required: true,
         trim: true
@@ -17,7 +22,8 @@ const userSchema = new Schema({
             if(value.toLowerCase().includes('password')){
                 throw new Error('Your password cannot be password')
             }
-        }
+        },
+        select: false
     },  
     email: {
         type: String,
@@ -31,6 +37,11 @@ const userSchema = new Schema({
         trim: true,
         lowercase: true
     },
+    role: {
+        type: String,
+        required: true,
+        default: 'USER'
+    }
 })
 
 
