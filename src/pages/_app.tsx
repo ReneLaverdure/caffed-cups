@@ -6,7 +6,7 @@ import Footer from '../components/Footer/Footer.jsx'
 
 import {store} from '../store/store'
 import { Provider } from 'react-redux'
-import "../db/mongoose.js"
+
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

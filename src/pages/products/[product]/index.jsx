@@ -1,9 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import ProductCard from '../../../components/ProductCard/ProductCard'
-import Product from '../../../models/products'
+
 import TypesSection from '../../../components/TypesSection/TypesSection'
 import { useRouter } from 'next/router'
 
+
+//db imports
+import {connectToMongoDB} from '../../../db/mongoose'
+import Product from '../../../models/products'
 
 export default function ProductPage({products}) {
     const router = useRouter()
@@ -135,6 +139,9 @@ export async function getStaticPaths() {
   }
 
 export async function getStaticProps(context) {
+
+    await connectToMongoDB().catch(err => res.json(err))
+
     let products = await Product.find({product_type: context.params.product})
     products = JSON.stringify(products)
     products = JSON.parse(products)
