@@ -1,8 +1,8 @@
 import '../../styles/globals.css'
 import type { AppProps } from 'next/app'
 
-import Navbar from '../components/Navbar/Navbar.jsx'
-import Footer from '../components/Footer/Footer.jsx'
+import Navbar from '../components/Navbar/Navbar'
+import Footer from '../components/Footer/Footer'
 
 import {SessionProvider} from 'next-auth/react'
 

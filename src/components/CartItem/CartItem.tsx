@@ -5,9 +5,11 @@ import styles from './cartItem.module.css';
 import { useDispatch } from 'react-redux';
 
 import { clearCartItem, addCartItem, removeCartItem } from '@/store/features/cart';
+import { CartItemInterface } from '@/types';
 
-export default function CartItem({item}) {
-    const {name, price, image, quantity} = item
+export default function CartItem({cartItem}: CartItemInterface) {
+  
+    const {name, price, image, quantity} = cartItem
     const dispatch = useDispatch()
 
 
@@ -18,14 +20,14 @@ export default function CartItem({item}) {
       <h4>{name}</h4>
 
       <div className={styles.CartItemControl}>
-        <button onClick={() => dispatch(removeCartItem(item))}>-</button>
+        <button className={styles.CartItemControlButton} onClick={() => dispatch(removeCartItem(cartItem))}>-</button>
         <p>{quantity}</p>
-        <button onClick={() => dispatch(addCartItem(item))}>+</button>
+        <button className={styles.CartItemControlButton} onClick={() => dispatch(addCartItem(cartItem))}>+</button>
       </div>
 
       <h4>${price}.00</h4>
 
-      <button onClick={() => dispatch(clearCartItem(item))}>X</button>
+      <button className={styles.CartItemControlButton} onClick={() => dispatch(clearCartItem(cartItem))}>X</button>
     </div>
   )
 }

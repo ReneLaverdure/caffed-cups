@@ -8,6 +8,7 @@ import * as Yup from 'yup'
 import { useState } from 'react';
 
 import { loginUser } from '../helpers';
+import TextInput from '../components/TextInput/TextInput';
 
 
 export default function Login() {
@@ -31,10 +32,10 @@ export default function Login() {
                 .required('password is required')
         }),
         onSubmit: async (values) => {
-            
+            console.log(values)
             try {
                 setLoading(true)
-
+                    console.log('re')
                      const loginRes = await loginUser({
                         email: values.email,
                         password: values.password
@@ -42,7 +43,7 @@ export default function Login() {
 
 
                     if(loginRes && !loginRes.ok){
-
+                        console.log(loginRes)
                         setSubmitError(loginRes.error || "")
                     } else {
                         console.log('hello from success')
@@ -50,7 +51,7 @@ export default function Login() {
                     }
 
             } catch(error){
-
+                console.log('error message', error)
                 const errorMsg = error.error
 
                 setSubmitError(errorMsg)
@@ -64,25 +65,32 @@ export default function Login() {
         <form onSubmit={formik.handleSubmit} className={styles.FormContainer} action="">
             <div className={styles.FormInputContainer}>
                 <h2>Login</h2>
-
-                <div className={styles.FormInput}>
-                    <label className={`${formik.touched.email && formik.errors.email ? styles.FormError : ''}`} htmlFor="email">{formik.touched.email && formik.errors.email ? formik.errors.email : 'Email'}</label>
-                    <input type="text" name='email' value={formik.values.email} onChange={formik.handleChange} placeholder='Enter your Email'/>
-                </div>
-
-                <div className={styles.FormInput}>
-                    <label className={`${formik.touched.password && formik.errors.password ? styles.FormError : ''}`} htmlFor="password">{formik.touched.password && formik.errors.password ? formik.errors.password : 'Password'}</label>
-                    <input type="password" name='password' value={formik.values.password} onChange={formik.handleChange} placeholder='Enter your Password'/>
-                </div>
+                <TextInput 
+                    name='email' 
+                    value={formik.values.email}
+                    labelLogic={formik.touched.email && formik.errors.email ? formik.errors.email : 'Email'}
+                    labelStyleLogic={`${formik.touched.email && formik.errors.email ? styles.FormError : ''}`}
+                    handleChange={formik.handleChange}
+                    placeholder="Enter your email"
+                />
+                <TextInput
+                    type='password' 
+                    name='password' 
+                    value={formik.values.password}
+                    labelLogic={formik.touched.password && formik.errors.password ? formik.errors.password : 'Password'}
+                    labelStyleLogic={`${formik.touched.password && formik.errors.password ? styles.FormError : ''}`}
+                    handleChange={formik.handleChange}
+                    placeholder="Enter your password"
+                />
 
                 <div>
-                    <p>Don&apos;t have a account register <Link href='/register'>Here</Link></p>
+                    <p>Don&apos;t have a account register <Link className={styles.FormLink} href='/register'>Here</Link></p>
                 </div>
          
                 <button type='submit'>Login</button>
 
             </div>
-            <div>
+            <div className={styles.FormImageContainer}>
                 <Image className={styles.FormImage} src={CoffeeDisplay} alt="Display of coffee cup on coffee beans"/>
             </div>
         </form>

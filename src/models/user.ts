@@ -41,6 +41,22 @@ const userSchema = new Schema({
         type: String,
         required: true,
         default: 'USER'
+    },
+    phoneNumber: {
+        type: Number,
+        required: false,
+    },
+    address: {
+        type: String,
+        required: false,
+    },
+    state: {
+        type: String,
+        required: false,
+    },
+    postCode: {
+        type: Number,
+        required: false,
     }
 })
 

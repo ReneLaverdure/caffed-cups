@@ -1,0 +1,15 @@
+.TextInputContainer{
+    margin-top: 1rem;
+}
+
+.TextInputContainer label{
+    display: block;
+    margin-bottom: .1rem;
+}
+
+.TextInputContainer input {
+    width: 100%;
+    border-radius: 5px;
+    padding: .5rem .8rem;
+    background-color: white;
+}

@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import ImageLink from '../components/ImageLink/ImageLink'
-import Circle from '../components/Circle/Circle'
 import PopUp from '../components/PopUp/PopUp'
 
 import SpilledBeans from '../../public/spilled-beans.png'
@@ -64,24 +63,9 @@ export default function Home() {
           </div>
 
           <div>
-
             <Image className={styles.DisplayImage} src={SpilledBeans} alt="spilled cup of coffee beans"  />
           </div>
-          <Circle 
-                top="-200" 
-                right="-100"
-                height="1100px"
-                width="1100px"
-                colour="var(--brown)"
-                />
-              
-            <Circle 
-                top="110" 
-                right="300"
-                height="800px"
-                width="800px"
-                colour="var(--secondary-colour)"
-                />    
+ 
         </div>  
   
       </main>

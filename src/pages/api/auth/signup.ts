@@ -12,21 +12,24 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
         const {firstName, lastName, email, password} = req.body
 
-        const userExist = await User.findOne({email})
+        // console.log(firstName, lastName, email, password)
 
+        const userExist = await User.findOne({email})
+        // console.log(userExist)
         if(userExist){
             return res.status(409).json({error: "User already exist"})
         } else {
             if(password.length < 6){
                 return res.status(409).json({error: "password should be 6 characters long"})
             }
-            console.log(password)
+            // console.log(password)
             const hashedPassword = await hash(password, 12)
-
+            // console.log(hashedPassword)
             try{
                 const newUser = new User({firstName, lastName, email, password: hashedPassword});
                 await newUser.save()
 
+                console.log(newUser)
 
                 let user = {
                     firstName: newUser.firstName,
@@ -37,6 +40,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
                 res.status(201).send({user})
             } catch(err){
+                console.log(err)
                 res.status(400).send(err)
             }
 

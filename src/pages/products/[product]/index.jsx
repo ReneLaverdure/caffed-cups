@@ -4,7 +4,6 @@ import ProductCard from '../../../components/ProductCard/ProductCard'
 import TypesSection from '../../../components/TypesSection/TypesSection'
 import { useRouter } from 'next/router'
 
-
 //db imports
 import {connectToMongoDB} from '../../../db/mongoose'
 import Product from '../../../models/products'
@@ -16,7 +15,6 @@ export default function ProductPage({products}) {
     const didMount = useRef(false)
 
     const [productsList, setProductsList] = useState([...products])
-
     const [sortedProducts, setSortedProducts] = useState([...products])
     const [typeItems, setTypeItems] = useState([])
     const [activeTypes, setActiveTypes] = useState([])

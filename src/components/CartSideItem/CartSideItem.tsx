@@ -4,7 +4,9 @@ import styles from './CartSideItem.module.css'
 import { useDispatch } from 'react-redux';
 import { clearCartItem, addCartItem, removeCartItem } from '@/store/features/cart';
 
-export default function CartSideItem({cartItem}) {
+import { CartItemInterface } from '@/types';
+
+export default function CartSideItem({cartItem}:CartItemInterface) {
     let {name, price, quantity, image} = cartItem;
     const dispatch = useDispatch()
 
