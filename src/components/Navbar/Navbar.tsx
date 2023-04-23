@@ -28,15 +28,9 @@ export default function Navbar() {
           <Link className={styles.NavLinks} href="/products/tea">
             tea
           </Link>
-          <Link className={styles.NavLinks} href="/about-us">
-            About us
-          </Link>
-          <Link className={styles.NavLinks} href="/contact">
-            Contact us
-          </Link>
           {
             session ?
-            <Link onClick={signOut} className={styles.NavLinks} href="/">
+            <Link onClick={(e) => signOut()} className={styles.NavLinks} href="/">
               Logout
             </Link> :
               <Link className={styles.NavLinks} href="/login">

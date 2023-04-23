@@ -10,7 +10,7 @@ export default function CartIcon() {
     const itemsCount = useSelector(getCatItemCount)
 
   return (
-    <div className={styles.CartIconContainer} onClick={() => dispatch(toggleCart())}>
+    <div className={styles.CartIconContainer} onClick={() => dispatch(toggleCart(''))}>
       {
         itemsCount > 0 ?  <span className={styles.ItemCount}>{itemsCount}</span> : null
       }

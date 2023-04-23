@@ -1,0 +1,12 @@
+.PaymentContainer{
+    width: 60%;
+    min-height: 80vh;
+    margin: 5rem auto;
+}
+
+.PaymentContainerWrapper{
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

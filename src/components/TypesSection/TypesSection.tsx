@@ -1,6 +1,8 @@
 import styles from './TypeSection.module.css'
+import { TypeSectionInterface } from '@/types'
 
-export default function TypesSection({title, items, handleTypes}) {
+
+export default function TypesSection({title, items, handleTypes}: TypeSectionInterface) {
 
     title = title.split("_").join(" ")
 

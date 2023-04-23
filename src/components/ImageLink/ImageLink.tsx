@@ -1,8 +1,10 @@
 import styles from './ImageLink.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
+import { ImageLinkInterface } from '@/types'
 
-export default function ImageLink({image, alt, name, link}) {
+
+export default function ImageLink({image, alt, name, link}: ImageLinkInterface) {
 
   return (
     <Link href={link}>

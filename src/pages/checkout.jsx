@@ -19,13 +19,15 @@ export default function Checkout() {
         )
     }
 
+    console.log(items)
+
     return (
-        <div >
-            <div>
+        <div className={styles.CheckoutContainerItem}>
+            <div className={styles.CheckoutContainerItemWrapper}>
                 {
                     items.map((item) => {
                         return (
-                            <CartItem key={item._id} item={item} />
+                            <CartItem key={item._id} cartItem={item} />
                         )
                     })
                 }

@@ -8,10 +8,11 @@ import TeaBush from '../../public/tea-bush.jpg'
 import styles from '../../styles/Form.module.css';
 import Link from 'next/link';
 
+import TextInput from '../components/TextInput/TextInput'
+
 export default function Register() {
 
     const router = useRouter()
-
     const [submitError, setSubmitError] = useState('')
     const [loading, setLoading] = useState(false)
 
@@ -41,7 +42,7 @@ export default function Register() {
         }),
         onSubmit: async (values) => {
             
-
+            console.log(values)
             try {
                 setLoading(true)
 
@@ -63,9 +64,8 @@ export default function Register() {
                         password: values.password
                     })
 
-
                     if(loginRes && !loginRes.ok){
-
+                        console.log(loginRes)
                         setSubmitError(loginRes.error || "")
                     } else {
                         console.log('hello from success')
@@ -73,25 +73,21 @@ export default function Register() {
                     }
 
                 } else {
-                    setSubmitError(log.error)
+      
+                    setSubmitError(data.error)
                 }
               
-
             } catch(error){
-                // console.log(error)
                 const errorMsg = error.error
-                // console.log(errorMsg)
                 setSubmitError(errorMsg)
             }
-
-
             
             setLoading(false)
-            // router.push({pathname: '/', query: {success: true}})
+
         }
     })
 
-    // console.log(submitError)
+
 
   return (
     <div className={styles.FormWrapper}>
@@ -103,27 +99,48 @@ export default function Register() {
                 submitError && <p style={{color: 'red'}}>{submitError}</p>
             }
 
-            <div className={styles.FormInput}>
-                <label className={`${formik.touched.email && formik.errors.email ? styles.FormError : ''}`} htmlFor="email">{formik.touched.email && formik.errors.email ? formik.errors.email : 'Email'}</label>
-                <input type="text" name='email' value={formik.values.email} onChange={formik.handleChange} placeholder='Enter your Email'/>
-            </div>
-            <div className={styles.FormInput}>
-                <label className={`${formik.touched.firstName && formik.errors.firstName ? styles.FormError : ''}`} htmlFor="firstName">{formik.touched.firstName && formik.errors.firstName ? formik.errors.firstName : 'First name'}</label>
-                <input type="text" name='firstName' value={formik.values.firstName} onChange={formik.handleChange} placeholder='Enter your first name'/>
-            </div>
-            <div className={styles.FormInput}>
-                <label className={`${formik.touched.lastName && formik.errors.lastName ? styles.FormError : ''}`} htmlFor="lastName">{formik.touched.lastName && formik.errors.lastName ? formik.errors.lastName : 'Last Name'}</label>
-                <input type="text" name='lastName' value={formik.values.lastName} onChange={formik.handleChange} placeholder='Enter your last name'/>
-            </div>
-
-            <div className={styles.FormInput}>
-                <label className={`${formik.touched.password && formik.errors.password ? styles.FormError : ''}`} htmlFor="password">{formik.touched.password && formik.errors.password ? formik.errors.password : 'Password'}</label>
-                <input type="password" name='password' value={formik.values.password} onChange={formik.handleChange} placeholder='Enter your Password'/>
-            </div>
-            <div className={styles.FormInput}>
-                <label className={`${formik.touched.confirmPassword && formik.errors.confirmPassword ? styles.FormError : ''}`} htmlFor="confirmPassword">{formik.touched.confirmPassword && formik.errors.confirmPassword ? formik.errors.confirmPassword : 'Confirm Password'}</label>
-                <input type="password"  name='confirmPassword' value={formik.values.confirmPassword} onChange={formik.handleChange} placeholder='Re-enter your Password'/>
-            </div>
+            <TextInput 
+                name='email' 
+                value={formik.values.email}
+                labelLogic={formik.touched.email && formik.errors.email ? formik.errors.email : 'Email'}
+                labelStyleLogic={`${formik.touched.email && formik.errors.email ? styles.FormError : ''}`}
+                handleChange={formik.handleChange}
+                placeholder="Enter your email"
+            />
+            <TextInput 
+                name='firstName' 
+                value={formik.values.firstName}
+                labelLogic={formik.touched.firstName && formik.errors.firstName ? formik.errors.firstName : 'First name'}
+                labelStyleLogic={`${formik.touched.firstName && formik.errors.firstName ? styles.FormError : ''}`}
+                handleChange={formik.handleChange}
+                placeholder="Enter your first name"
+            />
+            <TextInput 
+                name='lastName' 
+                value={formik.values.lastName}
+                labelLogic={formik.touched.lastName && formik.errors.lastName ? formik.errors.lastName : 'Last Name'}
+                labelStyleLogic={`${formik.touched.lastName && formik.errors.lastName ? styles.FormError : ''}`}
+                handleChange={formik.handleChange}
+                placeholder="Enter your last name"
+            />
+            <TextInput 
+                name='password' 
+                value={formik.values.password}
+                labelLogic={formik.touched.password && formik.errors.password ? formik.errors.password : 'Password'}
+                labelStyleLogic={`${formik.touched.password && formik.errors.password ? styles.FormError : ''}`}
+                handleChange={formik.handleChange}
+                type="password"
+                placeholder="Enter your password"
+            />
+            <TextInput 
+                name='confirmPassword' 
+                value={formik.values.confirmPassword}
+                labelLogic={formik.touched.confirmPassword && formik.errors.confirmPassword ? formik.errors.confirmPassword : 'Confirm Password'}
+                labelStyleLogic={`${formik.touched.confirmPassword && formik.errors.confirmPassword ? styles.FormError : ''}`}
+                handleChange={formik.handleChange}
+                type="password"
+                placeholder="confirm your Password"
+            />
 
             <div className={styles.FormLinkContainer}>
                 <p>Already have an account <Link className={styles.FormLink} href='/login'>Login Here</Link></p>

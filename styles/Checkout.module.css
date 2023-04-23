@@ -8,8 +8,18 @@
     align-items: center;
 }
 
-.CheckoutWrapper{
+.CheckoutContainerItem{
+    width: 60%;
+    min-height: 80vh;
+    margin: 5rem auto;
+}
 
+.CheckoutContainerItemWrapper{
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
 }
 
 .CheckoutWrapper h1{
